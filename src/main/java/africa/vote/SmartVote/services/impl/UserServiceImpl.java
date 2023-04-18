@@ -16,6 +16,7 @@ import africa.vote.SmartVote.security.config.JWTService;
 import africa.vote.SmartVote.services.EmailService;
 import africa.vote.SmartVote.services.UserService;
 import africa.vote.SmartVote.utils.TokenGenerator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +30,7 @@ import java.util.Optional;
 import static africa.vote.SmartVote.utils.EmailUtils.buildEmail;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
@@ -36,21 +38,6 @@ public class UserServiceImpl implements UserService {
     private final JWTService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           TokenRepository tokenRepository,
-                           EmailService emailService,
-                           JWTService jwtService,
-                           PasswordEncoder passwordEncoder,
-                           AuthenticationManager authenticationManager) {
-        this.userRepository = userRepository;
-        this.tokenRepository = tokenRepository;
-        this.emailService = emailService;
-        this.jwtService = jwtService;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-    }
 
     @Override
     public void saveUser(AppUser appUser) {

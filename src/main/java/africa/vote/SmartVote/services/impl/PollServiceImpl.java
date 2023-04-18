@@ -11,6 +11,7 @@ import africa.vote.SmartVote.datas.models.Vote;
 import africa.vote.SmartVote.datas.repositories.PollRepository;
 import africa.vote.SmartVote.exeptions.GenericException;
 import africa.vote.SmartVote.services.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,27 +25,14 @@ import java.util.List;
 import static africa.vote.SmartVote.datas.enums.Status.*;
 
 @Service
+@RequiredArgsConstructor
 public class PollServiceImpl implements PollService {
     private final PollRepository pollRepository;
     private final UserService userService;
     private final ResultService resultService;
     private final VoteService voteService;
     private final CandidateService candidateService;
-
     private final ZoneId zone = ZoneId.of("GMT+1");
-
-    @Autowired
-    public PollServiceImpl(PollRepository pollRepository,
-                           UserService userService,
-                           ResultService resultService,
-                           VoteService voteService,
-                           CandidateService candidateService) {
-        this.pollRepository = pollRepository;
-        this.userService = userService;
-        this.resultService = resultService;
-        this.voteService = voteService;
-        this.candidateService = candidateService;
-    }
 
     @Override
     @Transactional

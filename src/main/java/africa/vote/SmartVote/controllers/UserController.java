@@ -10,6 +10,7 @@ import africa.vote.SmartVote.services.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +22,9 @@ import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("/api/v1/user/")
+@RequiredArgsConstructor
 public class UserController {
-
     public final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;}
-
 
     @PostMapping("create")
     public ResponseEntity<?> createUser(@Valid @RequestBody TokenRequest tokenRequest,

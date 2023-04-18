@@ -5,6 +5,7 @@ import africa.vote.SmartVote.datas.dtos.responses.ApiResponse;
 import africa.vote.SmartVote.services.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,11 @@ import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("/api/v1/welcome/")
+@RequiredArgsConstructor
 public class AppUserController {
     public final UserService userService;
-    public AppUserController(UserService userService) {
-        this.userService = userService;
-    }
 
-    @PutMapping("update")
-    @SecurityRequirement(name = "BearerAuth")
+    @PutMapping("update") @SecurityRequirement(name = "BearerAuth")
     public ResponseEntity<?> updateAppUser(@RequestBody UpdateUserRequest userRequest, HttpServletRequest request){
 
         var data = userService.updateAppUser(userRequest);

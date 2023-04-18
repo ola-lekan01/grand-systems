@@ -8,6 +8,7 @@ import africa.vote.SmartVote.datas.models.AppUser;
 import africa.vote.SmartVote.exeptions.GenericException;
 import africa.vote.SmartVote.services.RegistrationService;
 import africa.vote.SmartVote.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,17 +16,10 @@ import org.springframework.stereotype.Service;
 import static africa.vote.SmartVote.datas.enums.Status.UNVERIFIED;
 
 @Service
+@RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
-
-    @Autowired
-    public RegistrationServiceImpl(PasswordEncoder passwordEncoder,
-                                   UserService userService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
-    }
-
     @Override
     public ApiData register(RegistrationRequest registrationRequest) {
         if(userService.findByEmailIgnoreCase(registrationRequest.getEmail())

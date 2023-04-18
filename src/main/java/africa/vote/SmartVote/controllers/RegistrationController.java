@@ -6,6 +6,7 @@ import africa.vote.SmartVote.services.RegistrationService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,9 @@ import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("/api/v1/registration/")
+@RequiredArgsConstructor
 public class RegistrationController {
     public final RegistrationService registrationService;
-
-    @Autowired
-    public RegistrationController(RegistrationService registrationService) {
-        this.registrationService = registrationService;
-    }
 
     @PostMapping("register")
     public ResponseEntity<?> registration(@RequestBody @Valid RegistrationRequest registrationRequest,

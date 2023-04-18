@@ -7,6 +7,7 @@ import africa.vote.SmartVote.services.PollService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,9 @@ import java.time.ZonedDateTime;
 
 @RestController
 @RequestMapping("/api/v1/poll/")
+@RequiredArgsConstructor
 public class PollController {
     private final PollService pollService;
-
-    @Autowired
-    public PollController(PollService pollService) {
-        this.pollService = pollService;
-    }
 
     @PostMapping("create")
     @SecurityRequirement(name = "BearerAuth")

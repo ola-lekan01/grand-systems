@@ -3,17 +3,15 @@ package africa.vote.SmartVote.services.impl;
 import africa.vote.SmartVote.datas.models.Result;
 import africa.vote.SmartVote.datas.repositories.ResultRepository;
 import africa.vote.SmartVote.services.ResultService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ResultServiceImpl implements ResultService {
 
     private final ResultRepository resultRepository;
-    @Autowired
-    public ResultServiceImpl(ResultRepository resultRepository) {
-        this.resultRepository = resultRepository;
-    }
 
     @Override
     public void updateCandidateResult(String resultId) {
